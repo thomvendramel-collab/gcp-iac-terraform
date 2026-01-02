@@ -1,0 +1,42 @@
+project_id = "seu-project-id"
+region     = "us-central1"
+
+subnets = [
+  {
+    name          = "dev-subnet-1"
+    ip_cidr_range = "10.0.1.0/24"
+    region        = "us-central1"
+    private_access = false
+  }
+]
+
+gke_node_pools = [
+  {
+    name         = "default-pool"
+    machine_type = "e2-small"
+    min_count    = 1
+    max_count    = 3
+    disk_size_gb = 20
+    disk_type    = "pd-standard"
+  }
+]
+
+enable_cloud_sql = false
+
+storage_buckets = [
+  {
+    name          = "dev-storage-bucket"
+    location      = "US"
+    storage_class = "STANDARD"
+    versioning    = false
+  }
+]
+
+service_accounts = [
+  {
+    account_id   = "dev-app-sa"
+    display_name = "Development App Service Account"
+    roles        = ["roles/storage.objectViewer"]
+  }
+]
+
